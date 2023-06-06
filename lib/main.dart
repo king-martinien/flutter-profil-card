@@ -6,8 +6,15 @@ void main() {
   ));
 }
 
-class KingCard extends StatelessWidget {
+class KingCard extends StatefulWidget {
   const KingCard({super.key});
+
+  @override
+  State<KingCard> createState() => _KingCardState();
+}
+
+class _KingCardState extends State<KingCard> {
+  int currentLevel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +29,7 @@ class KingCard extends StatelessWidget {
         backgroundColor: const Color.fromRGBO(22, 22, 22, 1),
         elevation: 0,
       ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.fromLTRB(30, 40, 20, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +75,7 @@ class KingCard extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              "8",
+              "$currentLevel",
               style: TextStyle(
                   color: Colors.amber,
                   fontSize: 28,
@@ -94,6 +101,15 @@ class KingCard extends StatelessWidget {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            currentLevel += 1;
+          });
+        },
+        backgroundColor: const Color.fromRGBO(22, 22, 22, 1),
+        child: const Icon(Icons.add),
       ),
     );
   }
